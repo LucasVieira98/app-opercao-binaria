@@ -1,0 +1,83 @@
+<div class="container mt-5">
+  <h2>Operação entre números binarios</h2>
+  <form novalidate #formulario="ngForm" (ngSubmit)="realizarOperacao()">
+
+    <mat-form-field class="col-md-9" appearance="outline">
+      <mat-label>Digite o primeiro número</mat-label>
+      <input
+        type="text"
+        name="primeiroNumero"
+        matInput
+        ngModel
+        minlength="8"
+        maxlength="8"
+        required
+        pattern="[0-1]{8}"
+        #inputNumero1="ngModel"
+      />
+
+    </mat-form-field>
+
+    <mat-error *ngIf="inputNumero1.errors?.pattern && inputNumero1.errors?.minlength">
+      <p>Informe somente 0 e 1</p>
+      <p>O campo necessita de 8 digitos</p>
+    </mat-error>
+
+
+    <mat-form-field class="col-md-9" appearance="outline">
+      <mat-label>Digite o primeiro número</mat-label>
+      <input
+        type="text"
+        name="segundoNumero"
+        autocomplete="off"
+        minlength="8"
+        maxlength="8"
+        pattern="[0-1]{8}"
+        matInput
+        ngModel
+        required
+        #inputNumero2="ngModel"
+      />
+    </mat-form-field>
+
+    <mat-error *ngIf="inputNumero2.errors?.pattern && inputNumero2.errors?.minlength">
+      <p>Informe somente 0 e 1</p>
+      <p>O campo necessita de 8 digitos</p>
+    </mat-error>
+
+
+    <h3>Selecione uma operação</h3>
+
+    <mat-form-field class="col-md-9" appearance="outline">
+      <mat-label>Operação</mat-label>
+      <mat-select
+        type="text"
+        name="operacao"
+        ngModel
+        required
+        #inputOperacao="ngModel"
+      >
+        <mat-option value="">Selecione</mat-option>
+        <mat-option value="+">Soma</mat-option>
+        <mat-option value="-">Subtração</mat-option>
+        <mat-option value="*">Multiplicação</mat-option>
+        <mat-option value="/">Divisão</mat-option>
+        <mat-option value="%">Resto da divisão</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="col-md-9">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!formulario.valid"
+      >Realizar operação</button>
+    </div>
+  </form>
+
+  <div class="mt-5">
+    <h3>Resultado final:</h3>
+    <p>{{ resultadoDaOperacao }}</p>
+  </div>
+
+</div>
